@@ -1,0 +1,57 @@
+# Rime schema
+# SPDX-License-Identifier: GPL-3.0-or-later
+# encoding: utf-8
+#
+# 刻舟拼音：朙月拼音，輸出傳承字形。
+# 方案、字典、用戶詞庫都沿用朙月拼音（luna_pinyin），
+# 衹在濾鏡前面加兩層 OpenCC 轉換：
+#   oopart_inherit.json   恆開：I.字坊《傳承字形推薦形體表》＋個人用字
+#   oopart_paranoid.json  偏執模式（方案選單切換，默認關）：換成源流更早的形體
+
+schema:
+  schema_id: oopart
+  name: 刻舟拼音
+  version: '0.3'
+  author:
+    - scarabeeta <https://github.com/scarabeeta>
+  description: |
+    朙月拼音，輸出傳承字形。
+    附「偏執模式」，輸出各詞最早的字形。
+    https://github.com/scarabeeta/rime-oopart
+  dependencies:
+    - luna_pinyin
+    - stroke
+
+__include: luna_pinyin.schema:/
+__patch:
+  schema/schema_id: oopart
+  schema/name: 刻舟拼音
+  schema/version: '0.3'
+  schema/author:
+    - scarabeeta <https://github.com/scarabeeta>
+  schema/description: |
+    朙月拼音，輸出傳承字形。
+    附「偏執模式」，輸出各詞最早的字形。
+    https://github.com/scarabeeta/rime-oopart
+  schema/dependencies:
+    - luna_pinyin
+    - stroke
+  switches/+:
+    - name: inherit
+      reset: 1                 # 無 states：不在選單顯示，恆開
+    - name: paranoid
+      reset: 0                 # 默認關
+      states: [ 刻舟, 偏執 ]
+  engine/filters:
+    - simplifier@inherit
+    - simplifier@paranoid
+    - simplifier
+    - uniquifier
+  inherit:
+    option_name: inherit
+    opencc_config: oopart_inherit.json
+    tips: none
+  paranoid:
+    option_name: paranoid
+    opencc_config: oopart_paranoid.json
+    tips: none

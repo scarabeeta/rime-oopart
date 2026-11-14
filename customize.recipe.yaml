@@ -1,0 +1,20 @@
+# encoding: utf-8
+# SPDX-License-Identifier: GPL-3.0-or-later
+# 安裝刻舟拼音並加入方案選單：
+#   rime-install scarabeeta/rime-oopart:customize
+
+recipe:
+  Rx: customize
+  description: >-
+    安裝刻舟拼音，並把它加進 default.custom.yaml 的方案選單
+
+install_files:
+  - oopart.schema.yaml
+  - opencc/oopart_*.json
+  - opencc/oopart_*.txt
+
+patch_files:
+  default.custom.yaml:
+    - patch/+:
+        schema_list/@next:
+          schema: oopart
