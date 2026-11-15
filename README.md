@@ -45,7 +45,7 @@ rime-install scarabeeta/rime-oopart
 | 平臺 | 做法 |
 |---|---|
 | macOS 鼠鬚管 | `"/Library/Input Methods/Squirrel.app/Contents/MacOS/rime-install" scarabeeta/rime-oopart:customize`<br>（會在當前目錄建一個 `plum` 文件夾，裝完可以刪除） |
-| Windows 小狼毫 | 「輸入法設定」→「獲取更多輸入方案」，輸入 `scarabeeta/rime-oopart:customize` |
+| Windows 小狼毫 | 「輸入法設定」→「獲取更多輸入方案」，輸入 `scarabeeta/rime-oopart`；之後在「輸入法設定」裏勾選刻舟拼音 |
 | Linux | `curl -fsSL https://raw.githubusercontent.com/rime/plum/master/rime-install \| bash -s -- scarabeeta/rime-oopart:customize`<br>fcitx5 用戶在前面加 `rime_frontend=fcitx5-rime` |
 
 裝畢重新部署即可。`:customize` 會在 `default.custom.yaml` 裏把刻舟拼音添到方案列表末尾，原有方案悉數保留。
